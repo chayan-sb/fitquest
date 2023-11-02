@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Profile</title>
+</head>
+<body>
+  <h1>User Profile</h1>
+
+  <div id="user-profile">
+    <p><strong>Username:</strong> <span id="username"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+    <p><strong>Age:</strong> <span id="age"></span></p>
+    <p><strong>BMI:</strong> <span id="bmi"></span></p>
+    <p><strong>Bio:</strong> <span id="bio"></span></p>
+    <p><strong>Address:</strong> <span id="address"></span></p>
+
+    <!-- Logout button -->
+    <form id="logout-form" action="/logout" method="POST">
+      <input type="submit" value="Logout">
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Fetch user information from the server
+      fetch('http://localhost:3000/profile')
+        .then(response => response.json())
+        .then(user => {
+          if (user.error) {
+            // Handle error (user not found)
+          } else {
+            document.getElementById('username').textContent = user.username;
+            document.getElementById('email').textContent = user.email;
+            document.getElementById('age').textContent = user.age;
+            document.getElementById('bmi').textContent = user.bmi;
+            document.getElementById('bio').textContent = user.bio;
+            document.getElementById('address').textContent = user.address;
+          }
+        });
+
+      // Handle the logout form submission
+      const logoutForm = document.getElementById('logout-form');
+      logoutForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        fetch('http://localhost:3000/logout', {
+          method: 'POST',
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Handle successful logout (e.g., redirect to login page)
+            window.location.href = 'login/login.html'; // Redirect to login page
+          } else {
+            // Handle unsuccessful logout (e.g., display an error message)
+            alert('Logout failed. Please try again.');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

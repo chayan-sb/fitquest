@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Communities</title>
+  <link rel="stylesheet" href="your_communities.css">
+</head>
+<body>
+  <header>
+    <h1>Your Communities</h1>
+    <a href="javascript:history.go(-1)" class="back-button">Back</a>
+
+  </header>
+  <div class="container">
+    <div class="community-list">
+      
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const communityList = document.querySelector('.community-list');
+  
+      // Fetch communities joined by the user from the server
+      fetch('http://localhost:3000/your-communities')
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            const joinedCommunities = data.joinedCommunities;
+  
+            if (joinedCommunities.length > 0) {
+              // Iterate through the joined communities and create HTML elements to display each community
+              joinedCommunities.forEach(community => {
+                const communityItem = document.createElement('div');
+                communityItem.classList.add('community-item');
+
+                const communityName = document.createElement('h2');
+                communityName.textContent = community.community_name;
+  
+                const adminName = document.createElement('p');
+                adminName.textContent = `Admin: ${community.admin_name}`;
+  
+                const maxParticipants = document.createElement('p');
+                maxParticipants.textContent = `Max Participants: ${community.max_participants}`;
+  
+                const description = document.createElement('p');
+                description.textContent = `Description: ${community.community_description}`;
+  
+                // Add any other details you want to display
+                const chatButton = document.createElement('button');
+               chatButton.textContent = 'Chat with Members';
+                chatButton.classList.add('button-chat');
+
+                   chatButton.addEventListener('click', () => {
+                  window.location.href = `index.html?community_id=${community.community_id}`;
+               });
+  
+                communityItem.appendChild(communityName);
+                communityItem.appendChild(adminName);
+                communityItem.appendChild(maxParticipants);
+                communityItem.appendChild(description);
+                communityItem.appendChild(chatButton);
+                // Append the community item to the community list
+                communityList.appendChild(communityItem);
+              });
+            } else {
+              // Display a message if the user hasn't joined any communities
+              communityList.innerHTML = '<p>You haven\'t joined any communities yet.</p>';
+            }
+          } else {
+            // Handle the case where fetching joined communities was not successful
+            communityList.innerHTML = '<p>Failed to fetch joined communities.</p>';
+          }
+        });
+    });
+  </script>
+</body>
+</html>

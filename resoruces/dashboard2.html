@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Dashboard</title>
+</head>
+<body>
+  <h1>Welcome to Your Dashboard</h1>
+  <div id="user-info">
+    <p>Username: <span id="username"></span></p>
+    <p>Email: <span id="email"></span></p>
+    <p>Age: <span id="age"></span></p>
+    <p>BMI: <span id="bmi"></span></p>
+    <p>Bio: <span id="bio"></span></p>
+  </div>
+
+  <!-- Login button -->
+  <button id="loginButton">Login</button>
+
+  <!-- Logout button -->
+  <button id="logoutButton">Logout</button>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Function to update UI based on login status
+      function updateUI() {
+        if (loggedInUser) {
+          // User is logged in, show user-specific content
+          $('#username').text(loggedInUser);
+          $('#loginButton').hide();
+          $('#logoutButton').show();
+        } else {
+          // User is not logged in, show login button
+          $('#user-info').hide();
+          $('#loginButton').show();
+          $('#logoutButton').hide();
+        }
+      }
+
+      // Check the initial login status on page load
+      updateUI();
+
+      // Login button click event
+      $('#loginButton').on('click', function () {
+        // Implement login logic here (e.g., show a login form)
+        // After successful login, update loggedInUser and call updateUI()
+      });
+
+      // Logout button click event
+      $('#logoutButton').on('click', function () {
+        // Implement logout logic here (e.g., make a POST request to /logout)
+        $.post('/logout', function (data) {
+          if (data.success) {
+            loggedInUser = null; // Set the logged-in user to null
+            updateUI();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

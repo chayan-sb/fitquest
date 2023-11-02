@@ -1,0 +1,176 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Article Page</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Article Page</h1>
+
+    <h2>Add an Article</h2>
+    <form id="article-form">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required>
+      <label for="content">Content:</label>
+      <textarea id="content" name="content" required></textarea>
+      <button type="submit">Add Article</button>
+    </form>
+
+    <h2>Articles</h2>
+    <ul id="article-list"></ul>
+  </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const articleForm = document.getElementById('article-form');
+    const articleList = document.getElementById('article-list');
+  
+    articleForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
+  
+      fetch('http://localhost:3000/articles', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ title, content }),
+      })
+        .then(response => response.json())
+        .then(newArticle => {
+          const li = document.createElement('li');
+          li.textContent = `${newArticle.title}: ${newArticle.content}`;
+          articleList.appendChild(li);
+  
+          document.getElementById('title').value = '';
+          document.getElementById('content').value = '';
+        })
+        .catch(error => console.error('Error:', error));
+    });
+  
+    // Load existing articles
+    fetch('http://localhost:3000/articles')
+      .then(response => response.json())
+      .then(articles => {
+        articles.forEach(article => {
+          const li = document.createElement('li');
+          li.textContent = `${article.title}: ${article.content}`;
+          articleList.appendChild(li);
+        });
+      })
+      .catch(error => console.error('Error:', error));
+  });
+  </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Article Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../navstyle.css">
+
+</head>
+<body>
+  <header id="header">
+    <div class="header-content-div">
+      <a href="#home-sec">
+        <img
+          src="images/logo.png"
+          alt="Company Logo"
+          id="header-img"
+      /></a>
+      <nav id="nav-bar"  class="d-flex justify-content-between">
+        <a href="../workout/question2.html" class="nav-link">WORKOUT</a>
+        <a href="../events/event_first_page.html" class="nav-link">EVENTS</a>
+        <a href="../community/community.html" class="nav-link">COMMUNITY</a>
+      
+        <a href="../home/home.html" class="nav-link">BENEFITS</a>
+        <a href="../home/home.html" class="nav-link">ABOUT</a>
+        <a href="../blog/blogs.html" class="nav-link">BLOGS</a>
+        <a href="../profile/profile.html" class="nav-link">PROFILE</a>
+    
+        
+      </nav>
+    </div>
+   
+  
+  </header>
+  <div class="container">
+    <h1>Article Page</h1>
+
+    <h2>Add an Article</h2>
+    <form id="article-form">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required>
+      <label for="content">Content:</label>
+      <textarea id="content" name="content" required></textarea>
+      <button type="submit">Add Article</button>
+    </form>
+
+    <h2>Articles</h2>
+    <ul id="article-list"></ul>
+  </div>
+
+  <!-- <script src="script.js"></script> -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const articleForm = document.getElementById('article-form');
+      const articleList = document.getElementById('article-list');
+
+      articleForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const title = document.getElementById('title').value;
+        const content = document.getElementById('content').value;
+
+        fetch('http://localhost:3000/articles', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ title, content }),
+        })
+          .then(response => response.json())
+          .then(newArticle => {
+            const li = document.createElement('li');
+            const articleTitle = document.createElement('h3');
+            articleTitle.innerHTML = `<b>${newArticle.title}</b>`;
+            const articleContent = document.createElement('p');
+            articleContent.innerHTML = `<i>${newArticle.content}</i>`;
+            li.appendChild(articleTitle);
+            li.appendChild(articleContent);
+            articleList.appendChild(li);
+
+            document.getElementById('title').value = '';
+            document.getElementById('content').value = '';
+          })
+          .catch(error => console.error('Error:', error));
+      });
+
+      // Load existing articles
+      fetch('http://localhost:3000/articles')
+        .then(response => response.json())
+        .then(articles => {
+          articles.forEach(article => {
+            const li = document.createElement('li');
+            const articleTitle = document.createElement('h3');
+            articleTitle.innerHTML = `<b>${article.title}</b>`;
+            const articleContent = document.createElement('p');
+            articleContent.innerHTML = `<i>${article.content}</i>`;
+
+
+            li.appendChild(articleTitle);
+            li.appendChild(articleContent);
+            articleList.appendChild(li);
+          });
+        })
+        .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+</html>

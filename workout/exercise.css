@@ -1,0 +1,69 @@
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+  
+  /* Container for the exercise list */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header styles */
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+  }
+  
+  /* List styles */
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* Exercise item styles */
+  li {
+    margin: 10px 0;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+  
+  /* Exercise item hover effect */
+  li:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Exercise name styles */
+  h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Exercise description styles */
+  p {
+    margin: 10px 0 0;
+    font-size: 16px;
+    color: #666;
+  }
+  
+  /* Exercise GIF styles */
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  

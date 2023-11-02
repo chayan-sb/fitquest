@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Details</title>
+<link rel="stylesheet" href="event-details.css">
+</head>
+<body>
+  <header>
+    <h1>Event Details</h1>
+  </header>
+  <div class="container">
+    <div class="event-details">
+      <h2 id="event-name"></h2>
+      <p id="event-date"></p>
+      <p id="event-location"></p>
+      <p id="event-price"></p>
+      <p id="event-description"></p>
+      <button id="show-registration">Register for the Event</button>
+      <form id="registration-form" style="display: none;">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="ticket-type">Ticket Type:</label>
+        <select id="ticket-type" name="ticket-type" required>
+          <option value="regular">Regular</option>
+          <option value="vip">VIP</option>
+        </select>
+        
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments" rows="4"></textarea>
+        
+        <input type="submit" value="Register">
+      </form>
+    </div>
+  </div>
+  <script src="event-details.js"></script>
+</body>
+</html>

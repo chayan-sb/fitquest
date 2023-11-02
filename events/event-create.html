@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="event-create.css">
+    <link rel="stylesheet" href="../navstyle.css">
+    <title>Event Organizer</title>
+</head>
+<body>
+  <header id="header">
+    <div class="header-content-div">
+      <a href="#home-sec">
+        <img
+          src="images/logo.png"
+          alt="Company Logo"
+          id="header-img"
+      /></a>
+      <nav id="nav-bar"  class="d-flex justify-content-between">
+        <a href="../workout/question2.html" class="nav-link">WORKOUT</a>
+        <a href="../events/event_first_page.html" class="nav-link">EVENTS</a>
+        <a href="../community/community.html" class="nav-link">COMMUNITY</a>
+      
+        <a href="../home/home.html" class="nav-link">BENEFITS</a>
+        <a href="../home/home.html" class="nav-link">ABOUT</a>
+        <a href="../blog/blogs.html" class="nav-link">BLOGS</a>
+        <a href="../profile/profile.html" class="nav-link">PROFILE</a>
+    
+        
+      </nav>
+    </div>
+   
+  
+  </header>
+    <div class="container">
+        <div class="event-form">
+            <h2>Organize an Event</h2>
+            <form id="event-form">
+                <label for="event_name">Name Of The Event</label>
+                <input type="text" id="event_name" name="event_name" required>
+                
+                <label for="organizerName">Organizer Name</label>
+                <input type="text" id="organizerName" name="organizerName" required>
+
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" required>
+
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+
+                <label for="dateFrom">Date (From)</label>
+                <input type="date" id="dateFrom" name="dateFrom" required>
+
+                <label for="dateTo">Date (To)</label>
+                <input type="date" id="dateTo" name="dateTo" required>
+
+                <label for="timings">Timings</label>
+                <input type="text" id="timings" name="timings" required>
+
+                <label for="eventType">Type of Event</label>
+                <select id="eventType" name="eventType" required>
+                    <option value="yoga">Yoga Event</option>
+                    <option value="sports">Sports Tournament</option>
+                    <option value="music">Music Concert</option>
+                    <option value="others">Others</option>
+                </select>
+
+                <label for="ticketPrice">Ticket Price</label>
+                <input type="number" id="ticketPrice" name="ticketPrice" required>
+
+                <label for="maxParticipants">Max Participants</label>
+                <input type="number" id="maxParticipants" name="maxParticipants" required>
+
+                <label for="idProof">Organizer's ID Proof</label>
+<input type="file" id="idProof" name="idProof" accept="image/*" required>
+
+               
+
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const eventForm = document.getElementById('event-form');
+      
+          eventForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+      
+            // Get the event data from the form
+            const event_name = document.getElementById('event_name').value;
+            const organizerName = document.getElementById('organizerName').value;
+            const location = document.getElementById('location').value;
+            const description = document.getElementById('description').value;
+            const dateFrom = document.getElementById('dateFrom').value;
+            const dateTo = document.getElementById('dateTo').value;
+            const timings = document.getElementById('timings').value;
+            const eventType = document.getElementById('eventType').value;
+            const ticketPrice = document.getElementById('ticketPrice').value;
+            const maxParticipants = document.getElementById('maxParticipants').value;
+            const idProof = document.getElementById('idProof').value;
+      
+            // Create a data object with the event information
+            const eventData = {
+              event_name,
+              organizerName,
+              location,
+              description,
+              dateFrom,
+              dateTo,
+              timings,
+              eventType,
+              ticketPrice,
+              maxParticipants,
+              idProof,
+            };
+      
+            // Send the event data to the server for processing
+            fetch('http://localhost:3000/create-event', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(eventData),
+            })
+              .then(response => response.json())
+              .then(data => {
+                if (data.success) {
+                  // Handle a successful event creation (e.g., show a success message)
+                  alert('Event created successfully');
+                  // Redirect to the event page or another appropriate page
+                  window.location.href = '../events/event_first_page.html';
+                } else {
+                  // Handle an unsuccessful event creation (e.g., display an error message)
+                  alert('Event creation failed. Please try again.');
+                }
+              });
+          });
+        });
+      </script>
+      
+</body>
+</html>

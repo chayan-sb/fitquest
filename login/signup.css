@@ -1,0 +1,79 @@
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Apply the background image and set the font family */
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url('images/jog-img-2.jpg'); /* Replace 'your-image-path.jpg' with the path to your background image */
+    background-repeat: no-repeat;
+    background-size: cover; /* Adjusted to cover the entire background */
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  /* Style the container for the signup form */
+  .container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Style the signup form */
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Style input fields */
+  input {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+  }
+  
+  /* Style the signup button */
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style links */
+  a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      width: 80%;
+    }
+  }
+  

@@ -1,0 +1,110 @@
+
+#header {
+  
+    height: max-content;
+    font-family: "Montserrat", sans-serif;
+    width: 100%;
+    background-color: #040D12;
+    padding: 1rem 0;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    box-shadow: 0 6px 31px -2px rgba(0, 0, 0, 0.1);
+    z-index: 999; /* Ensures it's on top of other content */
+
+
+}
+
+@media (max-width: 800px) {
+    #header {
+      text-align: center;
+      height: auto;
+    }
+  }
+  .header-content-div {
+    max-width: 95rem;
+    width: auto;
+    margin: 0 auto;
+  }
+  @media (max-width: 991px) {
+    .header-content-div {
+      max-width: 75rem;
+    }
+  }
+  #header-img {
+    height: 5rem;
+    width: auto;
+  }
+  @media (max-width: 800px) {
+    #header-img {
+      height: 4rem;
+    }
+  }
+  nav {
+    position: relative;
+    top: 0.8rem;
+    float: right;
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 1.5rem 0;
+  }
+  @media (max-width: 800px) {
+    nav {
+      position: static;
+      float: none;
+      font-size: 1.4rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+  .nav-link {
+    text-decoration: none;
+    color: #ffffff;
+    margin: 0 0.5rem;
+    padding: 0 0.6rem;
+    transition: border-bottom 0.2s;
+  }
+  @media (max-width: 475px) {
+    .nav-link {
+      margin: 0 0.2rem;
+      padding: 0 0.2rem;
+      font-size: 1.2rem;
+    }
+  }
+  .nav-link:hover {
+    color: #e23d3d;
+    border-bottom: 2px solid #e23d3d;
+  }
+  .nav-link:active {
+    color: #f84848;
+  }
+  .flexible {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+  }
+  .home-sec {
+    font-family: "Montserrat", sans-serif;
+    background-color: #ffffff;
+    text-align: start;
+    min-height: 60rem;
+    height: auto;
+    margin: 0 auto 5rem auto;
+    justify-content: start;
+    max-width: 95rem;
+    color: #333;
+  }
+  :root {
+    font-size: 10px;
+    font-family: "Open Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+  }

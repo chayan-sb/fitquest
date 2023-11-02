@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise List</title>
+    <link rel="stylesheet" href="exercise.css">
+   
+</head>
+<body>
+    <h1>List of Exercises</h1>
+    <ul id="exercise-list"></ul>
+
+    <script>
+ 
+      document.addEventListener('DOMContentLoaded', function () {
+            const exerciseList = document.getElementById('exercise-list');
+
+            // Extract query parameters from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const bodyPart = urlParams.get('bodyPart');
+            const equipment = urlParams.get('equipment');
+            const target = urlParams.get('target');
+            const time = urlParams.get('time');
+
+
+              const url = `http://localhost:3000/getExercises?bodyPart=${bodyPart}&equipment=${equipment}&target=${target}`;
+
+              fetch(url)
+                  .then((response) => response.json())
+                  .then((data) => {
+                      console.log('Fetched data:', data);
+                      exerciseList.innerHTML = '';
+                const isAnyBodyPart = bodyPart.toLowerCase() === 'any';
+                const isAnyEquipment = equipment.toLowerCase() === 'any';
+                const isAnyTarget = target.toLowerCase() === 'any';
+                      if (Array.isArray(data)) {
+                          const filteredExercises = data.filter((exercise) => {
+                              if (
+                                 isAnyBodyPart|| exercise.bodyPart.toLowerCase().includes(bodyPart.toLowerCase()))
+                                 {
+                                  if(isAnyEquipment||exercise.equipment.toLowerCase().includes(equipment.toLowerCase()))
+                                  {
+                                  if(isAnyTarget|| exercise.target.toLowerCase().includes(target.toLowerCase()))
+                                  {
+                                    return true;
+                                  }
+                                  } }
+                                  
+                                  
+                
+                              return false;
+                          });
+//this is the filtering without time..
+                          // if (filteredExercises.length > 0) {
+                      
+
+                          //     filteredExercises.forEach((exercise) => {
+                          //         console.log('Exercise object:', exercise);
+
+                          //         const exerciseItem = document.createElement('li');
+
+                          //         const gifImage = document.createElement('img');
+                          //         gifImage.src = exercise.gifUrl;
+                          //         gifImage.alt = exercise.name;
+                          //         exerciseItem.appendChild(gifImage);
+
+                          //         const nameHeading = document.createElement('h2');
+                          //         nameHeading.textContent = exercise.name;
+                          //         exerciseItem.appendChild(nameHeading);
+
+                          //         const descriptionParagraph = document.createElement('p');
+                          //         descriptionParagraph.textContent = `Body Part: ${exercise.bodyPart}, Equipment: ${exercise.equipment}, Target: ${exercise.target}`;
+                          //         exerciseItem.appendChild(descriptionParagraph);
+
+                          //         exerciseList.appendChild(exerciseItem);
+                          //     });
+                          // } 
+ //filtering with time ..                         
+                    if (filteredExercises.length > 0) {
+                        // Calculate the maximum number of exercises based on the selected time
+                        const maxExercises = Math.min(filteredExercises.length, time);
+
+                        for (let i = 0; i < maxExercises; i++) {
+                            const exercise = filteredExercises[i];
+
+                            console.log('Exercise object:', exercise);
+
+                            const exerciseItem = document.createElement('li');
+
+                            const gifImage = document.createElement('img');
+                            gifImage.src = exercise.gifUrl;
+                            gifImage.alt = exercise.name;
+                            exerciseItem.appendChild(gifImage);
+
+                            const nameHeading = document.createElement('h2');
+                            nameHeading.textContent = exercise.name;
+                            exerciseItem.appendChild(nameHeading);
+
+                            const descriptionParagraph = document.createElement('p');
+                            descriptionParagraph.textContent = `Body Part: ${exercise.bodyPart}, Equipment: ${exercise.equipment}, Target: ${exercise.target}`;
+                            exerciseItem.appendChild(descriptionParagraph);
+
+                            exerciseList.appendChild(exerciseItem);
+                        }
+                    }
+                          else {
+                              const noResultItem = document.createElement('li');
+                              noResultItem.textContent = 'No exercises found.';
+                              exerciseList.appendChild(noResultItem);
+                          }
+                      } else {
+                          console.error('Data is not an array:', data);
+                      }
+                  })
+                  .catch((error) => {
+                      console.error('Error:', error);
+                  });
+          });
+      
+  </script>
+
+  </body>
+
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Community</title>
+  <link rel="stylesheet" href="community-create.css">
+  <link rel="stylesheet" href="../navstyle.css">
+</head>
+<body>
+  <header id="header">
+    <div class="header-content-div">
+      <a href="#home-sec">
+        <img
+          src="images/logo.png"
+          alt="Company Logo"
+          id="header-img"
+      /></a>
+      <nav id="nav-bar"  class="d-flex justify-content-between">
+        <a href="../workout/question2.html" class="nav-link">WORKOUT</a>
+        <a href="../events/event_first_page.html" class="nav-link">EVENTS</a>
+        <a href="../community/community.html" class="nav-link">COMMUNITY</a>
+      
+        <a href="../home/home.html" class="nav-link">BENEFITS</a>
+        <a href="../home/home.html" class="nav-link">ABOUT</a>
+        <a href="../blog/blogs.html" class="nav-link">BLOGS</a>
+        <a href="../profile/profile.html" class="nav-link">PROFILE</a>
+    
+        
+      </nav>
+    </div>
+   
+  
+  </header>
+
+  <div class="container">
+    <form id="community-form">
+      <label for="community_name">Name of Community</label>
+      <input type="text" id="community_name" name="community_name" required>
+      
+      <label for="admin_name">Admin Name</label>
+      <input type="text" id="admin_name" name="admin_name" required>
+
+      <label for="max_participants">Maximum Allowed Participants</label>
+      <input type="number" id="max_participants" name="max_participants" required>
+
+      <label for="description">Description</label>
+      <textarea id="description" name="description"  required></textarea>
+
+      <button type="submit" class="btn">Create Community</button>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const communityForm = document.getElementById('community-form');
+      communityForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        // Get the user input
+        const communityName = document.getElementById('community_name').value;
+        const adminName = document.getElementById('admin_name').value;
+        const maxParticipants = document.getElementById('max_participants').value;
+        const description = document.getElementById('description').value;
+  console.log(description);
+       
+        // Send the community data to the server for processing
+        fetch('http://localhost:3000/create-community', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            community_name: communityName,
+            admin_name: adminName,
+            max_participants: maxParticipants,
+            description: description,
+          }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Community created successfully');
+            // Redirect to the community page or another appropriate page
+            window.location.href = 'community.html'; 
+          } else {
+            alert('Community creation failed. Please try again.');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

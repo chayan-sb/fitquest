@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Join</title>
+  <link rel="stylesheet" href="community_register.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Join a Community</h2>
+    <form id="join-form">
+      <label for="community_id">Community ID</label>
+      <input type="text" id="community_id" name="community_id" required>
+      
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="contact">Contact</label>
+      <input type="text" id="contact" name="contact" required>
+
+      <label for="comments">Comments</label>
+      <textarea id="comments" name="comments" rows="4" required></textarea>
+
+      <button type="submit" class="btn">Join</button>
+    </form>
+  </div>
+
+  <script >
+    document.addEventListener('DOMContentLoaded', () => {
+  // Function to get the community ID from the URL
+  function getCommunityIdFromURL() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    return urlParams.get('community_id');
+  }
+
+  // Get the community ID from the previous page
+  const communityID = getCommunityIdFromURL();
+
+  // Fill in the community ID field
+  const communityIDField = document.getElementById('community_id');
+  communityIDField.value = communityID;
+
+  // Add an event listener to the join form
+  const joinForm = document.getElementById('join-form');
+  joinForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    // Get the user input
+    const name = document.getElementById('name').value;
+    const contact = document.getElementById('contact').value;
+    const comments = document.getElementById('comments').value;
+
+    fetch('http://localhost:3000/community-register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        community_id: communityID,
+        name: name,
+        contact: contact,
+        comments: comments,
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Handle the response from the server
+      if (data.success) {
+        alert('Community join successful');
+        window.location.href = '../community/community.html';
+      } else {
+        alert('Community join failed');
+      }
+    });
+  });
+});
+
+  </script>
+</body>
+</html>

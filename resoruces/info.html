@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Information</title>
+</head>
+<body>
+  <h1>User Information</h1>
+  <form id="user-form" action="/users" method="POST">
+    <label for="nickname">Nickname:</label>
+    <input type="text" id="nickname" name="nickname">
+    <br>
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age">
+    <br>
+    <label for="bmi">BMI:</label>
+    <input type="number" step="0.01" id="bmi" name="bmi">
+    <br>
+    <label for="bio">Bio:</label>
+    <textarea id="bio" name="bio"></textarea>
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+    <br>
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone">
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const userForm = document.getElementById('user-form');
+      const userList = document.getElementById('user-list');
+
+      userForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const nickname = document.getElementById('nickname').value;
+        const age = document.getElementById('age').value;
+        const bmi = document.getElementById('bmi').value;
+        const bio = document.getElementById('bio').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+
+        fetch('http://localhost:3000/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ nickname, age, bmi, bio, email, phone }),
+        })
+          .then(response => response.json())
+          .then(newUser => {
+            const li = document.createElement('li');
+            const userNickname = document.createElement('h3');
+            userNickname.innerHTML = `<b>${newUser.nickname}</b>`;
+            const userAge = document.createElement('p');
+            userAge.innerHTML = `<i>Age: ${newUser.age}</i>`;
+            const userBMI = document.createElement('p');
+            userBMI.innerHTML = `<i>BMI: ${newUser.bmi}</i>`;
+            const userBio = document.createElement('p');
+            userBio.innerHTML = `<i>Bio: ${newUser.bio}</i>`;
+            const userEmail = document.createElement('p');
+            userEmail.innerHTML = `<i>Email: ${newUser.email}</i>`;
+            const userPhone = document.createElement('p');
+            userPhone.innerHTML = `<i>Phone: ${newUser.phone}</i>`;
+            
+            li.appendChild(userNickname);
+            li.appendChild(userAge);
+            li.appendChild(userBMI);
+            li.appendChild(userBio);
+            li.appendChild(userEmail);
+            li.appendChild(userPhone);
+            userList.appendChild(li);
+
+            // Clear form fields
+            userForm.reset();
+          })
+          .catch(error => console.error('Error:', error));
+      });
+
+    //   // Load existing users
+    //   fetch('http://localhost:3000/users')
+    //     .then(response => response.json())
+    //     .then(users => {
+    //       users.forEach(user => {
+    //         const li = document.createElement('li');
+    //         const userNickname = document.createElement('h3');
+    //         userNickname.innerHTML = `<b>${user.nickname}</b>`;
+    //         const userAge = document.createElement('p');
+    //         userAge.innerHTML = `<i>Age: ${user.age}</i>`;
+    //         const userBMI = document.createElement('p');
+    //         userBMI.innerHTML = `<i>BMI: ${user.bmi}</i>`;
+    //         const userBio = document.createElement('p');
+    //         userBio.innerHTML = `<i>Bio: ${user.bio}</i>`;
+    //         const userEmail = document.createElement('p');
+    //         userEmail.innerHTML = `<i>Email: ${user.email}</i>`;
+    //         const userPhone = document.createElement('p');
+    //         userPhone.innerHTML = `<i>Phone: ${user.phone}</i>`;
+
+    //         li.appendChild(userNickname);
+    //         li.appendChild(userAge);
+    //         li.appendChild(userBMI);
+    //         li.appendChild(userBio);
+    //         li.appendChild(userEmail);
+    //         li.appendChild(userPhone);
+    //         userList.appendChild(li);
+    //       });
+    //     })
+    //     .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+</html>

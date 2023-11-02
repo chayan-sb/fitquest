@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="signup.css">
+  <title>Fitness Website - Sign Up</title>
+</head>
+<body>
+  <div class="container">
+   <form id="signup-form" class="form" action="/signup" method="post">
+
+      <h2>Sign Up</h2>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+  const signupForm = document.getElementById('signup-form');
+
+  signupForm.addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+    
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const userData = {
+      username,
+      email,
+      password,
+    };
+
+    // Send a POST request to your backend to store user data
+    fetch('http://localhost:3000/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.error) {
+        alert('An error occurred. Please try again later.');
+      } else {
+        alert('User registered successfully!');
+        // Redirect to the login page or perform other actions
+        window.location.href = '../login/login.html';
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again later.');
+    });
+  });
+});
+
+
+  </script>
+</body>
+</html>

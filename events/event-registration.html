@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Registration</title>
+  <link rel="stylesheet" href="event-registration.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Event Registration</h2>
+    <a href="javascript:history.go(-1)" class="back-button">Back</a>
+
+    <form id="registration-form">
+      <label for="event_id">Event ID</label>
+      <input type="text" id="event_id" name="event_id" required>
+      
+      <label for="nickname">Nickname</label>
+      <input type="text" id="nickname" name="nickname" required>
+
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" name="phone" required>
+
+      <label for="comments">Comments</label>
+      <textarea id="comments" name="comments" rows="4" required></textarea>
+
+      <button type="submit" class="btn">Register</button>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Function to get the event
+      function getEventIdFromURL() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        return urlParams.get('event_id');
+      }
+
+      // Get the event ID from the previous page
+      const eventID = getEventIdFromURL();
+
+      // Fill in the event ID field
+      const eventIDField = document.getElementById('event_id');
+      eventIDField.value = eventID;
+
+      // Add an event listener to the registration form
+      const registrationForm = document.getElementById('registration-form');
+      registrationForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        // Get the user input
+        const nickname = document.getElementById('nickname').value;
+        const phone = document.getElementById('phone').value;
+        const comments = document.getElementById('comments').value;
+
+       
+        fetch('http://localhost:3000/event_register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            event_id: eventID,
+            nickname: nickname,
+            phone: phone,
+            comments: comments,
+          }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Handle the response from the server
+          if (data.success) {
+            alert('Registration successful');
+            window.location.href = '../events/event_first_page.html';
+          } else {
+            alert('Registration failed');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

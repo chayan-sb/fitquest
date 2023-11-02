@@ -1,0 +1,182 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise List</title>
+    <link rel="stylesheet" href="exercise.css">
+</head>
+
+<body>
+    <h1>List of Exercises</h1>
+
+    <form id="exercise-form">
+        <label for="bodyPartInput">Body Part:</label>
+        <input type="text" id="bodyPartInput" name="bodyPartInput">
+
+        <label for="equipmentInput">Equipment:</label>
+        <input type="text" id="equipmentInput" name="equipmentInput">
+
+        <label for="targetInput">Target:</label>
+        <input type="text" id="targetInput" name="targetInput">
+
+        <button type="submit">Get Exercises</button>
+    </form>
+
+    <ul id="exercise-list"></ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const exerciseList = document.getElementById('exercise-list');
+            const form = document.getElementById('exercise-form');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const bodyPart = document.getElementById('bodyPartInput').value;
+                const equipment = document.getElementById('equipmentInput').value;
+                const target = document.getElementById('targetInput').value;
+
+                const url = `http://localhost:3000/getExercises?bodyPart=${bodyPart}&equipment=${equipment}&target=${target}`;
+
+                fetch(url)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Fetched data:', data);
+                        exerciseList.innerHTML = '';
+
+                        if (Array.isArray(data)) {
+                            data.forEach((exercise) => {
+                                console.log('Exercise object:', exercise);
+
+                                const exerciseItem = document.createElement('li');
+
+                                const gifImage = document.createElement('img');
+                                gifImage.src = exercise.gifUrl;
+                                gifImage.alt = exercise.name;
+                                exerciseItem.appendChild(gifImage);
+
+                                const nameHeading = document.createElement('h2');
+                                nameHeading.textContent = exercise.name;
+                                exerciseItem.appendChild(nameHeading);
+
+                                const descriptionParagraph = document.createElement('p');
+                                descriptionParagraph.textContent = `Body Part: ${exercise.bodyPart}, Equipment: ${exercise.equipment}, Target: ${exercise.target}`;
+                                exerciseItem.appendChild(descriptionParagraph);
+
+                                exerciseList.appendChild(exerciseItem);
+                            });
+                        } else {
+                            console.error('Data is not an array:', data);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
+//Body Part: chest, Equipment: stability ball, Target: pectorals -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise List</title>
+    <link rel="stylesheet" href="exercise.css">
+</head>
+
+<body>
+    <h1>List of Exercises</h1>
+
+    <form id="exercise-form">
+        <label for="bodyPartInput">Body Part:</label>
+        <input type="text" id="bodyPartInput" name="bodyPartInput">
+
+        <label for="equipmentInput">Equipment:</label>
+        <input type="text" id="equipmentInput" name="equipmentInput">
+
+        <label for="targetInput">Target:</label>
+        <input type="text" id="targetInput" name="targetInput">
+
+        <button type="submit">Get Exercises</button>
+    </form>
+
+    <ul id="exercise-list"></ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const exerciseList = document.getElementById('exercise-list');
+            const form = document.getElementById('exercise-form');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const bodyPart = document.getElementById('bodyPartInput').value;
+                const equipment = document.getElementById('equipmentInput').value;
+                const target = document.getElementById('targetInput').value;
+
+                const url = `http://localhost:3000/getExercises?bodyPart=${bodyPart}&equipment=${equipment}&target=${target}`;
+
+                fetch(url)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Fetched data:', data);
+                        exerciseList.innerHTML = '';
+
+                        if (Array.isArray(data)) {
+                            const filteredExercises = data.filter((exercise) => {
+                                if (
+                                    exercise.bodyPart.toLowerCase().includes(bodyPart.toLowerCase())
+                                    && exercise.equipment.toLowerCase().includes(equipment.toLowerCase())
+                                    && exercise.target.toLowerCase().includes(target.toLowerCase())
+                                ) {
+                                    return true;
+                                }
+                                return false;
+                            });
+
+                            if (filteredExercises.length > 0) {
+                                filteredExercises.forEach((exercise) => {
+                                    console.log('Exercise object:', exercise);
+
+                                    const exerciseItem = document.createElement('li');
+
+                                    const gifImage = document.createElement('img');
+                                    gifImage.src = exercise.gifUrl;
+                                    gifImage.alt = exercise.name;
+                                    exerciseItem.appendChild(gifImage);
+
+                                    const nameHeading = document.createElement('h2');
+                                    nameHeading.textContent = exercise.name;
+                                    exerciseItem.appendChild(nameHeading);
+
+                                    const descriptionParagraph = document.createElement('p');
+                                    descriptionParagraph.textContent = `Body Part: ${exercise.bodyPart}, Equipment: ${exercise.equipment}, Target: ${exercise.target}`;
+                                    exerciseItem.appendChild(descriptionParagraph);
+
+                                    exerciseList.appendChild(exerciseItem);
+                                });
+                            } else {
+                                const noResultItem = document.createElement('li');
+                                noResultItem.textContent = 'No exercises found.';
+                                exerciseList.appendChild(noResultItem);
+                            }
+                        } else {
+                            console.error('Data is not an array:', data);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="login.css">
+  <title>Fitness Website - Login</title>
+</head>
+<body>
+  <div class="container">
+    <form id="login-form" class="form" action="/login" method="post">
+      <h2>Login</h2>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="signup2.html">Sign Up</a></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const loginForm = document.getElementById('login-form');
+
+      loginForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const userData = {
+          username,
+          password,
+        };
+
+        // Send a POST request to your backend to authenticate user
+        fetch('http://localhost:3000/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userData),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert('Login successful!');
+              // Redirect to the home page or perform other actions
+              window.location.href = '../home/home.html';
+            } else {
+              alert('Invalid username or password.');
+            }
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again later.');
+          });
+      });
+    });
+  </script>
+</body>
+</html>

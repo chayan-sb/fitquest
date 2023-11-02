@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Dashboard</title>
+</head>
+<body>
+  <h1>User Dashboard</h1>
+  <h2>User Information</h2>
+  <ul id="user-list"></ul>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const userList = document.getElementById('user-list');
+
+      // Load and display existing user information (you can fetch this data as needed)
+      fetch('http://localhost:3000/users')
+        .then(response => response.json())
+        .then(users => {
+          users.forEach(user => {
+            const li = document.createElement('li');
+            li.innerHTML = `<b>Nickname:</b> ${user.nickname}<br>
+                            <i>Age:</i> ${user.age}<br>
+                            <i>BMI:</i> ${user.bmi}<br>
+                            <i>Bio:</i> ${user.bio}<br>
+                            <i>Email:</i> ${user.email}<br>
+                            <i>Phone:</i> ${user.phone}<br><br>`;
+            userList.appendChild(li);
+          });
+        })
+        .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+</html>

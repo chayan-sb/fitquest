@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FitQUest</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="homestyles.css" />
+   
+
+</head>
+ <body>
+    <header id="header">
+      <div class="header-content-div">
+        <a href="#home-sec">
+          <img
+            src="images/logo.png"
+            alt="Company Logo"
+            id="header-img"
+        /></a>
+        <nav id="nav-bar"  class="d-flex justify-content-between">
+          <a href="../workout/question2.html" class="nav-link">WORKOUT</a>
+          <a href="../events/event_first_page.html" class="nav-link">EVENTS</a>
+          <a href="../community/community.html" class="nav-link">COMMUNITY</a>
+        
+          <a href="#benefits" class="nav-link">BENEFITS</a>
+          <a href="#benefits" class="nav-link">ABOUT</a>
+          <a href="../blog/blogs.html" class="nav-link">BLOGS</a>
+          <a href="../profile/profile.html" class="nav-link">PROFILE</a>
+      
+          
+        </nav>
+      </div>
+     
+    
+    </header>
+    <main>
+      <section id="home-sec" class="flexible home-sec">
+        <div class="eye-grabber-img">
+          <img src="images/jog-img-2.jpg" alt="Image of Apples" />
+        </div>
+        <div class="eye-grabber">
+          <h1>Fitness That Fits Into Your Lifestyle.</h1>
+          <h2>
+            Friendly fitness plans that suits your schedule and goals. 
+          </h2>
+          <button class="btn" onclick="window.location.href = '../profile/profile.html';">
+            Get Started
+          </button>
+        </div>
+      </section>
+      <section id="about" class="sec-padding">
+        <h3 class="section-heading">ABOUT US</h3>
+        <div class="sec-content-div flexible">
+          <p>The FitQuest is designed to support users in achieving their goals while prioritizing their physical  
+          health. By offering tailored exercise routines, time-efficient workouts, and stress-relief techniques,
+          it ensures that users can seamlessly integrate fitness into their busy lives. FitQuest empowers
+          individuals to strike a harmonious balance between their aspirations and well-being, fostering a
+          healthier and more productive journey toward their goals.
+          </p>
+          <img src="images/basketball-1.jpg" alt="People playing basketball" />
+        </div>
+      </section>
+      <section id="varieties" class="sec-padding">
+        <h3 class="section-heading">WORKOUT PLANS</h3>
+        <div class="sec-content-div flexible">
+          <div class="tile">
+            <img src="images/student.jpg" alt="photo of student" />
+            <h4>STUDENT</h4>
+              <ul>
+                <li>Bodyweight Exercises</li>
+                <li>Time-Efficient</li>
+                <li>Stress Relief</li>
+                <li>Variety and Fun</li>
+              </ul>
+          </div>
+          <div class="tile">
+            <img
+              src="images/emploee.jpg"
+              alt="photo of american trel apples"
+            />
+            <h4>Corporate Employee</h4>
+            <ul>
+              <li>Effective Time Management</li>
+              <li>Interval training</li>
+              <li>Office-Friendly Exercises</li>
+              <li>Stress Reduction</li>
+            </ul>
+          </div>
+          <div class="tile">
+            <img src="remote.jpg" alt="photo of red delicious apple" />
+            <h4>Remote Workers</h4>
+            <ul>
+              <li>Home Workouts</li>
+              <li>Ergonomics</li>
+              <li>Balanced Routines</li>
+              <li>Digital Detox</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section id="our-service" class="sec-padding">
+        <h3 class="section-heading">OUR SERVICE</h3>
+        <div class="sec-content-div">
+          <div class="bars">
+            <div class="icon-container">
+              <img src="effectiveworkout.gif" alt="" />
+            </div>
+            <div class="txt-container">
+              <h5>Effective Fitness plans</h5>
+              <p>
+                We provide Satisfactory workout plans to users and they can customize them.
+              </p>
+            </div>
+          </div>
+          <div class="bars">
+            <div class="icon-container">
+              <img src="huddle.gif" alt="" />
+            </div>
+            <div class="txt-container">
+              <h5>COMMUNITY</h5>
+              <p>Connect with people with simmilar interests and workout with group.</p>
+            </div>
+          </div>
+          <div class="bars">
+            <div class="icon-container">
+              <img src="events.gif" alt="" />
+            </div>
+            <div class="txt-container">
+              <h5>EVENTS</h5>
+              <p>
+                Join or Create Events and invite friends and families to enjoy.              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="benefits" class="sec-padding">
+        <h3 class="section-heading">BENEFITS</h3>
+        <div class="sec-content-div flexible">
+          <iframe
+            id="video"
+            width="560"
+            title="Benefits of Apple"
+            height="315"
+            src="https://www.youtube.com/embed/W_JOJNztrnI"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </section>
+      <section class="sec-padding" id="contact">
+        <h3 class="section-heading">CONTACT</h3>
+        <div class="sec-content-div flexible">
+          <h6>To make an order or just to know more contact us :</h6>
+          <form
+            id="form"
+            action="https://www.freecodecamp.com/email-submit"
+            method="POST"
+          >
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Your Email Address"
+              required
+            />
+            <input type="submit" class="btn" id="submit" value="Know More" />
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer>
+     
+    </footer>
+</body>
+</html>

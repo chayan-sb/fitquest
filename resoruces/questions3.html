@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input</title>
+</head>
+<body>
+    <h1>Enter Your Preferences</h1>
+
+    <form id="user-input-form" action="/filter-exercises" method="post">
+        <label for="bodyPartInput">Body Part:</label>
+        <input type="text" id="bodyPartInput" name="bodyPartInput">
+
+        <label for="equipmentInput">Equipment:</label>
+        <input type="text" id="equipmentInput" name="equipmentInput">
+
+        <label for="targetInput">Target:</label>
+        <input type="text" id="targetInput" name="targetInput">
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,59 @@
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+  }
+
+  header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 7rem;
+  }
+
+  .event-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    font-size: 15px;
+  }
+
+  .event-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .event-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .event-description {
+    font-size: 0.9rem;
+    color: #666;
+  }
+/* Add this CSS code to your event-join.css */
+
+.button-register {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.button-register:hover {
+  background-color: darkblue;
+}
+

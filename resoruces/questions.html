@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Questionnaire</title>
+    <link rel="stylesheet" href="questions.css">
+</head>
+<body>
+    <header>
+        <h1>Fitness Questionnaire</h1>
+    </header>
+    <form id="fitness-form"  action="http://localhost:3000/submit" method="POST">
+        <div class="question">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+        </div>
+        <div class="question">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="question">
+            <label for="bmi">BMI (Body Mass Index):</label>
+            <input type="number" id="bmi" name="bmi" step="0.01" required>
+        </div>
+        <div class="question">
+            <label for="exercise-time">Preferred Exercise Time (minutes per session):</label>
+            <input type="number" id="exercise-time" name="exercise-time" required>
+        </div>
+        <div class="question">
+            <label for="exercise-type">Preferred Exercise Type:</label>
+            <input type="text" id="exercise-type" name="exercise-type" required>
+        </div>
+        <div class="question">
+            <label for="focus-area">Focus Area (e.g., weight loss, muscle gain, flexibility):</label>
+            <input type="text" id="focus-area" name="focus-area" required>
+        </div>
+        <div class="question">
+            <label for="medical-conditions">Any Medical Conditions (if any):</label>
+            <textarea id="medical-conditions" name="medical-conditions"></textarea>
+        </div>
+        <div class="question">
+            <label for="fitness-goals">Fitness Goals:</label>
+            <textarea id="fitness-goals" name="fitness-goals" required></textarea>
+        </div>
+        <div class="question">
+            <label for="additional-comments">Additional Comments:</label>
+            <textarea id="additional-comments" name="additional-comments"></textarea>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

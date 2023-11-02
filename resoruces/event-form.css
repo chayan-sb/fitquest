@@ -1,0 +1,56 @@
+/* ... (previous styles) ... */
+
+/* Styling for the event details section */
+.event-details {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    background-color: #f9f9f9;
+  }
+  
+  .event-details h2 {
+    margin-top: 0;
+  }
+  
+  .event-details p {
+    line-height: 1.6;
+  }
+  
+  /* Styling for the registration form */
+  #registration-form {
+    margin-top: 1rem;
+    background-color: #f9f9f9;
+    padding: 1rem;
+  }
+  
+  #registration-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  #registration-form input[type="text"],
+  #registration-form input[type="email"],
+  #registration-form select,
+  #registration-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  #registration-form textarea {
+    resize: vertical;
+  }
+  
+  #registration-form input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  
+  #registration-form input[type="submit"]:hover {
+    background-color: #555;
+  }
+  

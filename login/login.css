@@ -1,0 +1,96 @@
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Apply a background image and set the font family */
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('images/jog-img-2.jpg'); /* Replace with your image path */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Style the container for the login form */
+.container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+/* Style the login form */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style input fields */
+label {
+  display: block;
+  margin-top: 10px;
+  color: #333;
+}
+
+input {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+/* Improve input field focus style */
+input:focus {
+  border-color: #007bff;
+}
+
+/* Style the login button */
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+/* Improve button hover effect */
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Style links */
+a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+/* Add hover effect for links */
+a:hover {
+  text-decoration: underline;
+}
+
+/* Style the headings */
+h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}

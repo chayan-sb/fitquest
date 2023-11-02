@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise List</title>
+    <link rel="stylesheet" href="exercise.css">
+</head>
+
+<body>
+    <h1>List of Exercises</h1>
+    <ul id="exercise-list"></ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const exerciseList = document.getElementById('exercise-list');
+
+            fetch('http://localhost:3000/getExercises') 
+                .then((response) => response.json())
+                .then((data) => {
+                  console.log('Fetched data:', data);
+                  exerciseList.innerHTML = '';
+
+
+                  if (Array.isArray(data)) {
+  data.forEach((exercise) => {
+    console.log('Exercise object:', exercise);
+
+    // Create a list item
+    const exerciseItem = document.createElement('li');
+
+    // Create an image element for the GIF
+    const gifImage = document.createElement('img');
+    gifImage.src = exercise.gifUrl; // Use the "gifUrl" property for the GIF URL
+    gifImage.alt = exercise.name;
+    exerciseItem.appendChild(gifImage);
+
+    // Create a heading for the exercise name
+    const nameHeading = document.createElement('h2');
+    nameHeading.textContent = exercise.name;
+    exerciseItem.appendChild(nameHeading);
+
+    // Create a paragraph for the exercise description
+    const descriptionParagraph = document.createElement('p');
+    descriptionParagraph.textContent = `Body Part: ${exercise.bodyPart}, Equipment: ${exercise.equipment}, Target: ${exercise.target}`;
+    exerciseItem.appendChild(descriptionParagraph);
+
+    // Add the list item to the list
+    exerciseList.appendChild(exerciseItem);
+  });
+}
+ else {
+    console.error('Data is not an array:', data);
+}
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>
+
+

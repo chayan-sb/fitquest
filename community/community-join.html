@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Community</title>
+  <link rel="stylesheet" href="community-join.css">
+</head>
+<body>
+  <header>
+    <h1>Join Community</h1>
+    <a href="javascript:history.go(-1)" class="back-button">Back</a>
+  </header>
+  <div class="container">
+    <div class="community-list">
+      
+    </div>
+  </div>
+  <script >
+    document.addEventListener('DOMContentLoaded', () => {
+    const communityList = document.querySelector('.community-list');
+  
+    // Fetch available communities from the server
+    fetch('http://localhost:3000/upcoming-communities')
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          const communities = data.communities;
+  
+          if (communities.length > 0) {
+            // Iterate through the communities and create HTML elements to display each community
+            communities.forEach(community => {
+              const communityItem = document.createElement('div');
+              communityItem.classList.add('community-item');
+
+              const communityName = document.createElement('h2');
+              communityName.textContent = community.community_name;
+  
+              const adminName = document.createElement('p');
+              adminName.textContent = `Admin: ${community.admin_name}`;
+  
+              const maxParticipants = document.createElement('p');
+              maxParticipants.textContent = `Max Participants: ${community.max_participants}`;
+  
+              const description = document.createElement('p');
+              description.textContent = `Description: ${community.description}`;
+  
+              const joinButton = document.createElement('button');
+              joinButton.textContent = 'Join';
+              joinButton.classList.add('button-join');
+  
+              joinButton.addEventListener('click', () => {
+                window.location.href = `community_register.html?community_id=${community.community_id}`;
+              });
+  
+              communityItem.appendChild(communityName);
+              communityItem.appendChild(adminName);
+              communityItem.appendChild(maxParticipants);
+              communityItem.appendChild(description);
+              communityItem.appendChild(joinButton);
+  
+              // Append the community item to the community list
+              communityList.appendChild(communityItem);
+            });
+          } else {
+            // Display a message if there are no available communities
+            communityList.innerHTML = '<p>No available communities.</p>';
+          }
+        } else {
+          // Handle the case where fetching communities was not successful
+          communityList.innerHTML = '<p>Failed to fetch available communities.</p>';
+        }
+      });
+  });
+
+  </script>
+</body>
+</html>
+

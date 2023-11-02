@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Profile</title>
+  <link rel="stylesheet" href="profile.css">
+  <link rel="stylesheet" href="../navstyle.css">
+
+</head>
+<body>
+  <header id="header">
+    <div class="header-content-div">
+      <a href="#home-sec">
+        <img
+          src="images/logo.png"
+          alt="Company Logo"
+          id="header-img"
+      /></a>
+      <nav id="nav-bar"  class="d-flex justify-content-between">
+        <a href="../workout/question2.html" class="nav-link">WORKOUT</a>
+        <a href="../events/event_first_page.html" class="nav-link">EVENTS</a>
+        <a href="../community/community.html" class="nav-link">COMMUNITY</a>
+      
+        <a href="../home/home.html" class="nav-link">BENEFITS</a>
+        <a href="../home/home.html" class="nav-link">ABOUT</a>
+        <a href="../blog/blogs.html" class="nav-link">BLOGS</a>
+        <a href="../profile/profile.html" class="nav-link">PROFILE</a>
+    
+        
+      </nav>
+    </div>
+   
+  
+  </header>
+  <h1>User Profile</h1>
+
+  <div id="user-profile">
+    <p><strong>Username:</strong> <span id="username"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+    <p><strong>Age:</strong> <span id="age"></span></p>
+    <p><strong>BMI:</strong> <span id="bmi"></span></p>
+    <p><strong>Bio:</strong> <span id="bio"></span></p>
+    <p><strong>Address:</strong> <span id="address"></span></p>
+
+    <!-- Update Profile button -->
+    <button id="update-profile-button">Update Profile</button>
+
+    <!-- Logout button -->
+    <form id="logout-form" action="/logout" method="POST">
+      <input type="submit" value="Logout">
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Fetch user information from the server
+      fetch('http://localhost:3000/profile')
+        .then(response => response.json())
+        .then(user => {
+          if (user.error) {
+            // Handle error (user not found)
+          } else {
+            document.getElementById('username').textContent = user.username;
+            document.getElementById('email').textContent = user.email;
+            document.getElementById('age').textContent = user.age;
+            document.getElementById('bmi').textContent = user.bmi;
+            document.getElementById('bio').textContent = user.bio;
+            document.getElementById('address').textContent = user.address;
+          }
+        });
+
+      // Handle the logout form submission
+      const logoutForm = document.getElementById('logout-form');
+      logoutForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        fetch('http://localhost:3000/logout', {
+          method: 'POST',
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Handle successful logout (e.g., redirect to login page)
+            window.location.href = '../login/login.html'; // Redirect to login page
+          } else {
+            // Handle unsuccessful logout (e.g., display an error message)
+            alert('Logout failed. Please try again.');
+          }
+        });
+      });
+
+      // Handle the "Update Profile" button click
+      const updateProfileButton = document.getElementById('update-profile-button');
+      updateProfileButton.addEventListener('click', () => {
+        // Redirect the user to the profile update page (you can specify the URL)
+        window.location.href = '../profile/update-profile.html';
+      });
+    });
+  </script>
+</body>
+</html>
